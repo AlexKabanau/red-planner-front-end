@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 		default: SITE_NAME,
 		template: `%s | ${SITE_NAME}`
 	},
-	description: 'Best one for planning from RED GROUP'
+	description: 'Best one for planning from RED GROUP [htmllessons.ru]'
 }
 
 export default function RootLayout({
@@ -32,12 +32,13 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={zen.className}>
 				<Providers>
+					{children}
+
 					<Toaster
 						theme='dark'
 						position='bottom-right'
 						duration={1500}
 					/>
-					{children}
 				</Providers>
 			</body>
 		</html>
