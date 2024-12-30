@@ -1,6 +1,6 @@
-import { axiosWithAuth } from '@/api/interceptors'
+import { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
 
-import { ITaskResponse, TypeTaskFormState } from '@/type/task.types'
+import { axiosWithAuth } from '@/api/interceptors'
 
 class TaskService {
 	private BASE_URL = '/user/tasks'

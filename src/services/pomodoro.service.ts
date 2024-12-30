@@ -1,10 +1,11 @@
+import { IPomodoroSessionResponse } from '@/types/pomodoro.types'
+
 import { axiosWithAuth } from '@/api/interceptors'
 
 import {
 	TypePomodoroRoundState,
 	TypePomodoroSessionState
-} from './../type/pomodoro.types'
-import { IPomodoroSessionResponse } from '@/type/pomodoro.types'
+} from '../types/pomodoro.types'
 
 class PomodoroService {
 	private BASE_URL = '/user/timer'
