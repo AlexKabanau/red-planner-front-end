@@ -1,6 +1,6 @@
-import React, { ChangeEventHandler, FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
-type Props = {
+interface InputFieldProps {
 	id: string
 	label: string
 	extra?: string
@@ -12,7 +12,7 @@ type Props = {
 	isNumber?: boolean
 }
 
-export const Field = forwardRef<HTMLInputElement, Props>(
+export const Field = forwardRef<HTMLInputElement, InputFieldProps>(
 	(
 		{ label, id, extra, type, placeholder, state, disabled, isNumber, ...rest },
 		ref
@@ -21,7 +21,7 @@ export const Field = forwardRef<HTMLInputElement, Props>(
 			<div className={`${extra}`}>
 				<label
 					htmlFor={id}
-					className={'teat-sm text-white/60 dark:text-white ml-1.5 font-medium'}
+					className={`text-sm text-white/60 dark:text-white ml-1.5 font-medium`}
 				>
 					{label}
 				</label>

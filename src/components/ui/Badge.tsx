@@ -1,7 +1,7 @@
 import type { CSSProperties, PropsWithChildren } from 'react'
 import { tv } from 'tailwind-variants'
 
-type IBadge = {
+interface IBadge {
 	className?: string
 	variant?: string
 	style?: CSSProperties

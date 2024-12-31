@@ -1,4 +1,4 @@
-type IHeading = {
+interface IHeading {
 	title: string
 }
 
