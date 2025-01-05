@@ -5,7 +5,7 @@ import { axiosWithAuth } from '@/api/interceptors'
 export interface IProfileResponse {
 	user: IUser
 	statistics: {
-		labe: string
+		label: string
 		value: string
 	}[]
 }
@@ -23,3 +23,5 @@ class UserService {
 		return response.data
 	}
 }
+
+export const userService = new UserService()
