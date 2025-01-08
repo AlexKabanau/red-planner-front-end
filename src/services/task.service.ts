@@ -19,6 +19,11 @@ class TaskService {
 		const response = await axiosWithAuth.put(`${this.BASE_URL}/${id}`, data)
 		return response
 	}
+
+	async deleteTask(id: string) {
+		const response = await axiosWithAuth.delete(`${this.BASE_URL}/${id}`)
+		return response
+	}
 }
 
 export const taskService = new TaskService()
