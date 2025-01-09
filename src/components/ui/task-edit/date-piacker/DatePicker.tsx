@@ -2,21 +2,18 @@ import cn from 'clsx'
 import dayjs from 'dayjs'
 import LocalizedFormat from 'dayjs/plugin/localizedFormat'
 import { X } from 'lucide-react'
-import React, { useState } from 'react'
-//@ts-ignore
-import {
-	DayPicker,
-	OnSelectHandler,
-	type SelectHandler,
-	type SelectSingleEventHandler,
-	formatCaption
-} from 'react-day-picker'
+import { useState } from 'react'
+import { DayPicker, type SelectSingleEventHandler } from 'react-day-picker'
+import 'react-day-picker/dist/style.css'
 
 import { useOutside } from '@/hooks/useOutside'
 
+import './DatePicker.scss'
+import { formatCaption } from './DatePickerCaption'
+
 dayjs.extend(LocalizedFormat)
 
-type IDatePicker = {
+interface IDatePicker {
 	onChange: (value: string) => void
 	value: string
 	position?: 'left' | 'right'
@@ -30,14 +27,10 @@ export function DatePicker({
 	const [selected, setSelected] = useState<Date>()
 	const { isShow, setIsShow, ref } = useOutside(false)
 
-	// const handleDaySelect: SelectSingleEventHandler = date => {
-	const handleDaySelect:
-		| OnSelectHandler<Date | undefined>
-		| undefined = date => {
+	const handleDaySelect: SelectSingleEventHandler = date => {
 		const ISOdate = date?.toISOString()
 
 		setSelected(date)
-
 		if (ISOdate) {
 			onChange(ISOdate)
 			setIsShow(false)
@@ -45,13 +38,14 @@ export function DatePicker({
 			onChange('')
 		}
 	}
+
 	return (
 		<div
 			className='relative'
 			ref={ref}
 		>
 			<button onClick={() => setIsShow(!isShow)}>
-				{value ? dayjs(value).format('LL') : 'Select date'}
+				{value ? dayjs(value).format('LL') : 'Click for select'}
 			</button>
 			{value && (
 				<button
@@ -68,12 +62,12 @@ export function DatePicker({
 						position === 'left' ? '-left-4' : ' -right-4'
 					)}
 					style={{
-						top: 'calc(100% + 7rem)'
+						top: 'calc(100% + .7rem)'
 					}}
 				>
 					<DayPicker
 						fromYear={2023}
-						toYear={2050}
+						toYear={2054}
 						initialFocus={isShow}
 						mode='single'
 						defaultMonth={selected}
