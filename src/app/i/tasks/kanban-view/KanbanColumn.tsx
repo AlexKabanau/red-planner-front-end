@@ -6,23 +6,18 @@ import { ITaskResponse } from '@/types/task.types'
 import { FILTERS } from '../columns.data'
 import { filterTasks } from '../filter-tasks'
 
-import { ListAddRowInput } from './ListAddRowInput'
-import { ListRow } from './ListRow'
-import styles from './ListView.module.scss'
+import { KanbanAddCardInput } from './KanbanAddCardInput'
+import { KanbanCard } from './KanbanCard'
+import styles from './KanbanView.module.scss'
 
-interface IListRowParrent {
+interface IKanbanColumn {
 	value: string
 	label: string
 	items: ITaskResponse[] | undefined
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-export function ListRowParrent({
-	items,
-	label,
-	value,
-	setItems
-}: IListRowParrent) {
+export function KanbanColumn({ items, label, value, setItems }: IKanbanColumn) {
 	return (
 		<Droppable droppableId={value}>
 			{provided => (
@@ -30,14 +25,14 @@ export function ListRowParrent({
 					ref={provided.innerRef}
 					{...provided.droppableProps}
 				>
-					<div className={styles.colHeading}>
-						<div className='w-full'>{label}</div>
+					<div className={styles.column}>
+						<div className={styles.columnHeading}>{column.label}</div>
 					</div>
 
-					{filterTasks(items, value)?.map((item, index) => (
+					{filterTasks(items, column.value)?.map((item, index) => (
 						<Draggable
 							key={item.id}
-							draggableId={item.id.toString()}
+							draggableId={item.id}
 							index={index}
 						>
 							{provided => (
@@ -47,7 +42,7 @@ export function ListRowParrent({
 									{...provided.dragHandleProps}
 									// className=' relative'
 								>
-									<ListRow
+									<KanbanCard
 										item={item}
 										setItems={setItems}
 										key={item.id}
@@ -58,10 +53,14 @@ export function ListRowParrent({
 					))}
 
 					{provided.placeholder}
-					{value !== 'today' && !items?.some(item => !item.id) && (
-						<ListAddRowInput
+					{column.value !== 'completed' && !items?.some(item => !item.id) && (
+						<KanbanAddCardInput
 							setItems={setItems}
-							filterDate={FILTERS[value] ? FILTERS[value].format() : undefined}
+							filterDate={
+								FILTERS[column.value]
+									? FILTERS[column.value].format()
+									: undefined
+							}
 						/>
 					)}
 				</div>
