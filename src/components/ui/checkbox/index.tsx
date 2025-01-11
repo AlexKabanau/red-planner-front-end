@@ -19,7 +19,6 @@ const Checkbox = (props: {
 	[x: string]: any
 }) => {
 	const { extra, color, id, ...rest } = props
-
 	return (
 		<input
 			id={id}

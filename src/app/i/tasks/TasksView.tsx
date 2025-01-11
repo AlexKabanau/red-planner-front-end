@@ -19,7 +19,6 @@ export function TasksView() {
 
 	if (isLoading) return <Loader />
 
-	//TODO: add kanban view
 	return (
 		<div>
 			<SwitcherView

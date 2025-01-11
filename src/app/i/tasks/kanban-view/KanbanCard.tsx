@@ -73,6 +73,30 @@ export function KanbanCard({ item, setItems }: Props) {
 						/>
 					)}
 				/>
+				<Controller
+					control={control}
+					name='priority'
+					render={({ field: { value, onChange } }) => (
+						<SingleSelect
+							data={['high', 'medium', 'low'].map(item => ({
+								value: item,
+								label: item
+							}))}
+							onChange={onChange}
+							value={value || ''}
+						/>
+					)}
+				/>
+			</div>
+			<div className={styles.cardActions}>
+				<button
+					onClick={() =>
+						item.id ? deleteTask(item.id) : setItems(prev => prev?.slice(0, -1))
+					}
+					className='opacity-50 transition-opacity hover:opacity-100'
+				>
+					{isDeletePending ? <Loader size={15} /> : <Trash size={15} />}
+				</button>
 			</div>
 		</div>
 	)
