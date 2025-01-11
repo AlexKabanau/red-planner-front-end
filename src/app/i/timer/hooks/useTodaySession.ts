@@ -3,19 +3,16 @@ import { Dispatch, SetStateAction, useEffect } from 'react'
 
 import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
 
-import { pomodoroService } from '@/services/pomodoro.service'
+import { ITimerState } from '../timer.types'
 
-interface IuseTodaySession {
-	setActiveRound: Dispatch<SetStateAction<IPomodoroRoundResponse | undefined>>
-	setSecondsLeft: Dispatch<SetStateAction<number>>
-	workInterval: number
-}
+import { useLoadSettings } from './useLoadSettings'
+import { pomodoroService } from '@/services/pomodoro.service'
 
 export function useTodaySession({
 	setActiveRound,
-	setSecondsLeft,
-	workInterval
-}: IuseTodaySession) {
+	setSecondsLeft
+}: ITimerState) {
+	const { workInterval } = useLoadSettings()
 	const {
 		data: sessiosResponse,
 		isLoading,
