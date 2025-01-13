@@ -5,7 +5,7 @@ import { pomodoroService } from '@/services/pomodoro.service'
 export function useDeleteSession(onDeleteSuccess: () => void) {
 	const queryClient = useQueryClient()
 
-	const { mutate: deletSession, isPending: isDeletePending } = useMutation({
+	const { mutate: deleteSession, isPending: isDeletePending } = useMutation({
 		mutationKey: ['delete session'],
 		mutationFn: (id: string) => pomodoroService.deleteSession(id),
 		onSuccess() {
@@ -15,5 +15,5 @@ export function useDeleteSession(onDeleteSuccess: () => void) {
 			onDeleteSuccess()
 		}
 	})
-	return { deletSession, isDeletePending }
+	return { deleteSession, isDeletePending }
 }

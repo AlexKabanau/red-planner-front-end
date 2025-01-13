@@ -5,7 +5,7 @@ export interface IPomodoroRoundResponse extends IBase {
 	totalSeconds: number
 }
 
-export interface IPomodoroSessionResponse {
+export interface IPomodoroSessionResponse extends IBase {
 	isCompleted?: boolean
 	rounds?: IPomodoroRoundResponse[]
 }

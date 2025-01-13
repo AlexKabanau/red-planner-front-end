@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Dispatch, SetStateAction, useEffect } from 'react'
-
-import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
+import { useEffect } from 'react'
 
 import { ITimerState } from '../timer.types'
 
@@ -32,10 +30,10 @@ export function useTodaySession({
 			setActiveRound(activeRound)
 
 			if (activeRound && activeRound?.totalSeconds !== 0) {
-				setSecondsLeft(workInterval - activeRound.totalSeconds)
+				setSecondsLeft(activeRound.totalSeconds)
 			}
 		}
 	}, [isSuccess, rounds])
 
-	return { sessiosResponse, isLoading, refetch, isSuccess }
+	return { sessiosResponse, isLoading, refetch, isSuccess, workInterval }
 }

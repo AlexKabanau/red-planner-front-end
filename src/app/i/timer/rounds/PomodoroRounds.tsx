@@ -4,7 +4,7 @@ import React from 'react'
 
 import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
 
-import styles from './PomodoroRound.module.scss'
+import styles from './PomodoroRounds.module.scss'
 
 interface IPomodoroRounds {
 	rounds: IPomodoroRoundResponse[] | undefined
