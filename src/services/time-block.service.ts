@@ -9,7 +9,9 @@ class TimeBlockService {
 	private BASE_URL = '/user/tine-blocks'
 
 	async getTimeBlocks() {
-		const response = await axiosWithAuth.get<ITimeBlockResponse>(this.BASE_URL)
+		const response = await axiosWithAuth.get<ITimeBlockResponse[]>(
+			this.BASE_URL
+		)
 
 		return response
 	}

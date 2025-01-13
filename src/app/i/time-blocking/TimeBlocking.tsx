@@ -5,6 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 
 import { TypeTimeBlockFormState } from '@/types/time-block.types'
 
+import { TimeBlockingList } from './TimeBlockingList'
 import TimeBlockingForm from './form/TimeBlockingForm'
 
 export default function TimeBlocking() {
@@ -12,7 +13,7 @@ export default function TimeBlocking() {
 	return (
 		<FormProvider {...methods}>
 			<div className='grid grid-cols-2 gap-12'>
-				{/* <TimeBlockingList /> */}
+				<TimeBlockingList />
 				<TimeBlockingForm />
 			</div>
 		</FormProvider>
