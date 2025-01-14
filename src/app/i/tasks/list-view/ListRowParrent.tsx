@@ -45,7 +45,6 @@ export function ListRowParrent({
 									ref={provided.innerRef}
 									{...provided.draggableProps}
 									{...provided.dragHandleProps}
-									// className=' relative'
 								>
 									<ListRow
 										item={item}
@@ -58,7 +57,8 @@ export function ListRowParrent({
 					))}
 
 					{provided.placeholder}
-					{value !== 'today' && !items?.some(item => !item.id) && (
+
+					{value !== 'completed' && !items?.some(item => !item.id) && (
 						<ListAddRowInput
 							setItems={setItems}
 							filterDate={FILTERS[value] ? FILTERS[value].format() : undefined}

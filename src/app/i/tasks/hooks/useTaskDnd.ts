@@ -11,6 +11,7 @@ export function useTaskDnd() {
 		if (!result.destination) return
 
 		const destinationColumnId = result.destination.droppableId
+
 		if (destinationColumnId === result.source.droppableId) return
 
 		if (destinationColumnId === 'completed') {
@@ -20,8 +21,10 @@ export function useTaskDnd() {
 					isCompleted: true
 				}
 			})
+
 			return
 		}
+
 		const newCreatedAt = FILTERS[destinationColumnId].format()
 
 		updateTask({

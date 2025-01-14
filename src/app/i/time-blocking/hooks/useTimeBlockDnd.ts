@@ -17,7 +17,10 @@ export function useTimeBlockDnd(
 	items: ITimeBlockResponse[] | undefined,
 	setItems: Dispatch<SetStateAction<ITimeBlockResponse[] | undefined>>
 ) {
-	const sensor = useSensors(useSensor(PointerSensor), useSensor(KeyboardSensor))
+	const sensors = useSensors(
+		useSensor(PointerSensor),
+		useSensor(KeyboardSensor)
+	)
 
 	const queryClient = useQueryClient()
 
@@ -25,9 +28,7 @@ export function useTimeBlockDnd(
 		mutationKey: ['update order time-block'],
 		mutationFn: (ids: string[]) => timeBlockService.updateOrderTimeBlock(ids),
 		onSuccess() {
-			queryClient.invalidateQueries({
-				queryKey: ['time-blocks']
-			})
+			queryClient.invalidateQueries({ queryKey: ['time-blocks'] })
 		}
 	})
 
@@ -47,7 +48,7 @@ export function useTimeBlockDnd(
 	}
 
 	return {
-		sensors: sensor,
+		sensors,
 		handleDragEnd
 	}
 }

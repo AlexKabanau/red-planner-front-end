@@ -55,6 +55,7 @@ export default function TimeBlockingForm() {
 				placeholder='Enter name'
 				extra='mb-4'
 			/>
+
 			<Field
 				{...register('duration', {
 					required: true,
@@ -66,6 +67,7 @@ export default function TimeBlockingForm() {
 				isNumber
 				extra='mb-4'
 			/>
+
 			<div>
 				<span className='inline-block mb-1.5'>Color:</span>
 				<Controller
@@ -79,10 +81,12 @@ export default function TimeBlockingForm() {
 							}))}
 							onChange={onChange}
 							value={value || COLORS[COLORS.length - 1]}
+							isColorSelect
 						/>
 					)}
 				/>
 			</div>
+
 			<Button
 				type='submit'
 				disabled={isPending}

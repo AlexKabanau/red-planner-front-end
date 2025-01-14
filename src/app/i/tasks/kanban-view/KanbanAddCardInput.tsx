@@ -2,8 +2,6 @@ import { type Dispatch, type SetStateAction } from 'react'
 
 import { ITaskResponse } from '@/types/task.types'
 
-import styles from './KanbanView.module.scss'
-
 interface IKanbanAddCardInput {
 	filterDate?: string
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>

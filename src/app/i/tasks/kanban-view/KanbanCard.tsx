@@ -13,10 +13,7 @@ import { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
 import { useDeleteTask } from '../hooks/useDeleteTask'
 import { useTaskDebounce } from '../hooks/useTaskDebounce'
 
-// import styles from 'react-day-picker/style.css'
 import styles from './KanbanView.module.scss'
-
-// import { cn } from 'tailwind-variants'
 
 type Props = {
 	item: ITaskResponse
@@ -32,6 +29,7 @@ export function KanbanCard({ item, setItems }: Props) {
 			createdAt: item.createdAt
 		}
 	})
+
 	useTaskDebounce({ watch, itemId: item.id })
 
 	const { deleteTask, isDeletePending } = useDeleteTask()
@@ -49,6 +47,7 @@ export function KanbanCard({ item, setItems }: Props) {
 				<button aria-describedby='todo-item'>
 					<GripVertical className={styles.grip} />
 				</button>
+
 				<Controller
 					control={control}
 					name='isCompleted'
@@ -59,20 +58,23 @@ export function KanbanCard({ item, setItems }: Props) {
 						/>
 					)}
 				/>
+
 				<TransparentField {...register('name')} />
 			</div>
+
 			<div className={styles.cardBody}>
 				<Controller
 					control={control}
 					name='createdAt'
 					render={({ field: { value, onChange } }) => (
-						<Checkbox
+						<DatePicker
 							onChange={onChange}
-							checked={value || ''}
+							value={value || ''}
 							position='left'
 						/>
 					)}
 				/>
+
 				<Controller
 					control={control}
 					name='priority'
@@ -88,6 +90,7 @@ export function KanbanCard({ item, setItems }: Props) {
 					)}
 				/>
 			</div>
+
 			<div className={styles.cardActions}>
 				<button
 					onClick={() =>

@@ -1,7 +1,6 @@
 'use client'
 
 import { DragDropContext } from '@hello-pangea/dnd'
-import React from 'react'
 
 import { COLUMNS } from '../columns.data'
 import { useTaskDnd } from '../hooks/useTaskDnd'

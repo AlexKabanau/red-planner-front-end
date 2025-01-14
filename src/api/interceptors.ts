@@ -17,7 +17,6 @@ const optins: CreateAxiosDefaults = {
 }
 
 const axiosClassic = axios.create(optins)
-
 const axiosWithAuth = axios.create(optins)
 
 axiosWithAuth.interceptors.request.use(config => {

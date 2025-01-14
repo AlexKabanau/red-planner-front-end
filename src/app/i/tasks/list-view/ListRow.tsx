@@ -13,10 +13,7 @@ import { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
 import { useDeleteTask } from '../hooks/useDeleteTask'
 import { useTaskDebounce } from '../hooks/useTaskDebounce'
 
-// import styles from 'react-day-picker/style.css'
 import styles from './ListView.module.scss'
-
-// import { cn } from 'tailwind-variants'
 
 type Props = {
 	item: ITaskResponse
@@ -27,14 +24,16 @@ export function ListRow({ item, setItems }: Props) {
 	const { watch, register, control } = useForm<TypeTaskFormState>({
 		defaultValues: {
 			name: item.name,
-			priority: item.priority,
 			isCompleted: item.isCompleted,
-			createdAt: item.createdAt
+			createdAt: item.createdAt,
+			priority: item.priority
 		}
 	})
+
 	useTaskDebounce({ watch, itemId: item.id })
 
 	const { deleteTask, isDeletePending } = useDeleteTask()
+
 	return (
 		<div
 			className={cn(
@@ -48,6 +47,7 @@ export function ListRow({ item, setItems }: Props) {
 					<button aria-describedby='todo-item'>
 						<GripVertical className={styles.grip} />
 					</button>
+
 					<Controller
 						control={control}
 						name='isCompleted'
@@ -58,6 +58,7 @@ export function ListRow({ item, setItems }: Props) {
 							/>
 						)}
 					/>
+
 					<TransparentField {...register('name')} />
 				</span>
 			</div>

@@ -17,8 +17,10 @@ export function Settings() {
 	})
 
 	useInitialData(reset)
+
 	const { mutate, isPending } = useUpdateSettings()
-	const onSumit: SubmitHandler<TypeUserForm> = data => {
+
+	const onSubmit: SubmitHandler<TypeUserForm> = data => {
 		const { password, ...rest } = data
 
 		mutate({
@@ -31,43 +33,51 @@ export function Settings() {
 		<div>
 			<form
 				className='w-2/4'
-				onSubmit={handleSubmit(onSumit)}
+				onSubmit={handleSubmit(onSubmit)}
 			>
 				<div className='grid grid-cols-2 gap-10'>
 					<div>
 						<Field
 							id='email'
-							label='Email'
-							placeholder='Enter email:'
+							label='Email: '
+							placeholder='Enter email: '
 							type='email'
-							{...register('email', { required: 'Email is required!' })}
+							{...register('email', {
+								required: 'Email is required!'
+							})}
 							extra='mb-4'
 						/>
+
 						<Field
 							id='name'
-							label='Name'
-							placeholder='Enter name:'
+							label='Name: '
+							placeholder='Enter name: '
 							{...register('name')}
 							extra='mb-4'
 						/>
+
 						<Field
 							id='password'
-							label='Password'
-							placeholder='Enter password:'
+							label='Password: '
+							placeholder='Enter password: '
 							type='password'
 							{...register('password')}
 							extra='mb-10'
 						/>
 					</div>
+
 					<div>
 						<Field
-							id='breacsInterval'
-							label='Work interval (min.)'
-							placeholder='Enter work interval (min.):'
+							id='workInterval'
+							label='Work interval (min.): '
+							placeholder='Enter work interval (min.): '
 							isNumber
-							{...register('workInterval', { valueAsNumber: true })}
+							{...register('workInterval', {
+								valueAsNumber: true
+							})}
 							extra='mb-4'
 						/>
+
 						<Field
 							id='breakInterval'
 							label='Break interval (min.): '
@@ -91,6 +101,7 @@ export function Settings() {
 						/>
 					</div>
 				</div>
+
 				<Button
 					type='submit'
 					disabled={isPending}

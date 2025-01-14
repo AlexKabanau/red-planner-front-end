@@ -27,38 +27,40 @@ export function KanbanColumn({ items, label, value, setItems }: IKanbanColumn) {
 				>
 					<div className={styles.column}>
 						<div className={styles.columnHeading}>{label}</div>
+
+						{filterTasks(items, value)?.map((item, index) => (
+							<Draggable
+								key={item.id}
+								draggableId={item.id.toString()}
+								index={index}
+							>
+								{provided => (
+									<div
+										ref={provided.innerRef}
+										{...provided.draggableProps}
+										{...provided.dragHandleProps}
+									>
+										<KanbanCard
+											item={item}
+											setItems={setItems}
+											key={item.id}
+										/>
+									</div>
+								)}
+							</Draggable>
+						))}
+
+						{provided.placeholder}
+
+						{value !== 'completed' && !items?.some(item => !item.id) && (
+							<KanbanAddCardInput
+								setItems={setItems}
+								filterDate={
+									FILTERS[value] ? FILTERS[value].format() : undefined
+								}
+							/>
+						)}
 					</div>
-
-					{filterTasks(items, value)?.map((item, index) => (
-						<Draggable
-							key={item.id}
-							draggableId={item.id.toString()}
-							index={index}
-						>
-							{provided => (
-								<div
-									ref={provided.innerRef}
-									{...provided.draggableProps}
-									{...provided.dragHandleProps}
-									// className=' relative'
-								>
-									<KanbanCard
-										item={item}
-										setItems={setItems}
-										key={item.id}
-									/>
-								</div>
-							)}
-						</Draggable>
-					))}
-
-					{provided.placeholder}
-					{value !== 'completed' && !items?.some(item => !item.id) && (
-						<KanbanAddCardInput
-							setItems={setItems}
-							filterDate={FILTERS[value] ? FILTERS[value].format() : undefined}
-						/>
-					)}
 				</div>
 			)}
 		</Droppable>
