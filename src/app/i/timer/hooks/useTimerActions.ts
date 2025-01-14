@@ -10,15 +10,14 @@ type TypeUseTimerActions = ITimerState & {
 }
 export function useTimerActions({
 	activeRound,
-	isRunning,
 	secondsLeft,
 	setActiveRound,
 	setIsRunning,
-	setSecondsLeft,
 	rounds
 }: TypeUseTimerActions) {
 	const { workInterval } = useLoadSettings()
 	const { isUpdateRoundPending, updateRound } = useUpdateRound()
+
 	const pauseHandler = () => {
 		setIsRunning(false)
 		if (!activeRound?.id) return
@@ -42,7 +41,7 @@ export function useTimerActions({
 			id: activeRound?.id,
 			data: {
 				isCompleted: true,
-				totalSeconds: workInterval
+				totalSeconds: workInterval * 60
 			}
 		})
 	}

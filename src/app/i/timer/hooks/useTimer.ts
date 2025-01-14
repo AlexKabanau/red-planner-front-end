@@ -11,6 +11,7 @@ export function useTimer(): ITimerState {
 
 	const [isRunning, setIsRunning] = useState(false)
 	const [isBreakTime, setIsBreakTime] = useState(false)
+
 	const [secondsLeft, setSecondsLeft] = useState(workInterval * 60)
 	const [activeRound, setActiveRound] = useState<IPomodoroRoundResponse>()
 
@@ -24,6 +25,7 @@ export function useTimer(): ITimerState {
 		} else if (!isRunning && secondsLeft !== 0 && interval) {
 			clearInterval(interval)
 		}
+
 		return () => {
 			if (interval) clearInterval(interval)
 		}

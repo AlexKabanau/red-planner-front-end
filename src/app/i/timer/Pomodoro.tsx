@@ -15,14 +15,17 @@ import PomodoroRounds from './rounds/PomodoroRounds'
 
 export default function Pomodoro() {
 	const timerState = useTimer()
-	const { isLoading, isSuccess, refetch, sessiosResponse, workInterval } =
+	const { isLoading, sessiosResponse, workInterval } =
 		useTodaySession(timerState)
+
 	const rounds = sessiosResponse?.data.rounds
 	const actions = useTimerActions({ ...timerState, rounds })
+
+	const { mutate, isPending } = useCreateSession()
 	const { deleteSession, isDeletePending } = useDeleteSession(() =>
 		timerState.setSecondsLeft(workInterval * 60)
 	)
-	const { mutate, isPending } = useCreateSession()
+
 	return (
 		<div className='relative w-80 text-center'>
 			{!isLoading && (
@@ -35,10 +38,10 @@ export default function Pomodoro() {
 			) : sessiosResponse?.data ? (
 				<>
 					<PomodoroRounds
-						activeRound={timerState.activeRound}
+						rounds={rounds}
 						nextRoundHandler={actions.nextRoundHandler}
 						prevRoundHandler={actions.prevRoundHandler}
-						rounds={rounds}
+						activeRound={timerState.activeRound}
 					/>
 					<button
 						className='mt-6 opacity-80 hover:opacity-100 transition-opacity'

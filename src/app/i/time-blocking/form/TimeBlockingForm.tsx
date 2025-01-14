@@ -62,8 +62,8 @@ export default function TimeBlockingForm() {
 					valueAsNumber: true
 				})}
 				id='duration'
-				label='Enter duration (sec.)'
-				placeholder='Enter duration (sec.)'
+				label='Enter duration (min.)'
+				placeholder='Enter duration (min.)'
 				isNumber
 				extra='mb-4'
 			/>

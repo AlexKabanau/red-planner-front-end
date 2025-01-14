@@ -11,7 +11,7 @@ export function useUpdateRound() {
 		mutationFn: ({ id, data }: { id: string; data: TypePomodoroRoundState }) =>
 			pomodoroService.updateRound(id, data),
 		onSuccess() {
-			queryClient.invalidateQueries({ queryKey: ['get today sesseion'] })
+			queryClient.invalidateQueries({ queryKey: ['get today session'] })
 		}
 	})
 

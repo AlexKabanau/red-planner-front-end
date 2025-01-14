@@ -11,6 +11,7 @@ export function useTodaySession({
 	setSecondsLeft
 }: ITimerState) {
 	const { workInterval } = useLoadSettings()
+
 	const {
 		data: sessiosResponse,
 		isLoading,
@@ -26,7 +27,6 @@ export function useTodaySession({
 	useEffect(() => {
 		if (isSuccess && rounds) {
 			const activeRound = rounds.find(round => !round.isCompleted)
-
 			setActiveRound(activeRound)
 
 			if (activeRound && activeRound?.totalSeconds !== 0) {
@@ -35,5 +35,5 @@ export function useTodaySession({
 		}
 	}, [isSuccess, rounds])
 
-	return { sessiosResponse, isLoading, refetch, isSuccess, workInterval }
+	return { sessiosResponse, isLoading, workInterval }
 }

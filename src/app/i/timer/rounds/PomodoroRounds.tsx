@@ -1,6 +1,5 @@
 import cn from 'clsx'
-import { ChevronLeft } from 'lucide-react'
-import React from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
 
@@ -12,6 +11,7 @@ interface IPomodoroRounds {
 	prevRoundHandler: () => void
 	activeRound: IPomodoroRoundResponse | undefined
 }
+
 export default function PomodoroRounds({
 	activeRound,
 	nextRoundHandler,
@@ -22,6 +22,7 @@ export default function PomodoroRounds({
 		? rounds.some(round => round.isCompleted)
 		: false
 	const isCanNextRound = rounds ? !rounds[rounds.length - 1].isCompleted : false
+
 	return (
 		<div className={styles.container}>
 			<button
@@ -48,7 +49,9 @@ export default function PomodoroRounds({
 				className={styles.button}
 				disabled={!isCanNextRound}
 				onClick={() => (isCanNextRound ? nextRoundHandler() : false)}
-			></button>
+			>
+				<ChevronRight size={23} />
+			</button>
 		</div>
 	)
 }
