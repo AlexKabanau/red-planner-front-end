@@ -1,11 +1,11 @@
 import cn from 'clsx'
-import { InputHTMLAttributes, forwardRef } from 'react'
+import { type InputHTMLAttributes, forwardRef } from 'react'
 
-type TransparentFieldType = InputHTMLAttributes<HTMLInputElement>
+type TypeTransparentField = InputHTMLAttributes<HTMLInputElement>
 
 export const TransparentField = forwardRef<
 	HTMLInputElement,
-	TransparentFieldType
+	TypeTransparentField
 >(({ className, ...rest }, ref) => {
 	return (
 		<input

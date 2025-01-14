@@ -16,6 +16,7 @@ interface ISingleSelect {
 	value: string
 	isColorSelect?: boolean
 }
+
 export function SingleSelect({
 	data,
 	onChange,
@@ -24,6 +25,7 @@ export function SingleSelect({
 }: ISingleSelect) {
 	const { isShow, setIsShow, ref } = useOutside(false)
 	const getValue = () => data.find(item => item.value === value)?.value
+
 	return (
 		<div
 			className={cn('relative min-w-36', {
