@@ -3,10 +3,10 @@
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
-import { TypeTimeBlockFormState } from '@/types/time-block.types'
+import type { TypeTimeBlockFormState } from '@/types/time-block.types'
 
 import { TimeBlockingList } from './TimeBlockingList'
-import TimeBlockingForm from './form/TimeBlockingForm'
+import { TimeBlockingForm } from './form/TimeBlockingForm'
 
 export default function TimeBlocking() {
 	const methods = useForm<TypeTimeBlockFormState>()

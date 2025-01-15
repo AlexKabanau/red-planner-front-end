@@ -25,7 +25,7 @@ export function useTimeBlockDnd(
 	const queryClient = useQueryClient()
 
 	const { mutate } = useMutation({
-		mutationKey: ['update order time-block'],
+		mutationKey: ['update order time block'],
 		mutationFn: (ids: string[]) => timeBlockService.updateOrderTimeBlock(ids),
 		onSuccess() {
 			queryClient.invalidateQueries({ queryKey: ['time-blocks'] })
@@ -40,15 +40,15 @@ export function useTimeBlockDnd(
 			const newIndex = items.findIndex(item => item.id === (over?.id || ''))
 
 			if (oldIndex !== -1 && newIndex !== -1) {
+				// Создаем новый отсортированный массив
 				const newItems = arrayMove(items, oldIndex, newIndex)
+				// Обновляем состояние
 				setItems(newItems)
+				// Обновляем порядок на сервере
 				mutate(newItems.map(item => item.id))
 			}
 		}
 	}
 
-	return {
-		sensors,
-		handleDragEnd
-	}
+	return { handleDragEnd, sensors }
 }

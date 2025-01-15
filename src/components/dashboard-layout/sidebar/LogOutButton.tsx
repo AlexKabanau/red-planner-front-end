@@ -9,6 +9,7 @@ import { authService } from '@/services/auth.service'
 
 export function LogOutButton() {
 	const router = useRouter()
+	
 	const { mutate } = useMutation({
 		mutationKey: ['logout'],
 		mutationFn: () => authService.logout(),

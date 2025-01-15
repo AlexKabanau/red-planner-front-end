@@ -1,17 +1,16 @@
-import React from 'react'
 import { Controller, SubmitHandler, useFormContext } from 'react-hook-form'
 
 import { Button } from '@/components/ui/buttons/Button'
 import { Field } from '@/components/ui/fields/Field'
 import { SingleSelect } from '@/components/ui/task-edit/SingleSelect'
 
-import { TypeTimeBlockFormState } from '@/types/time-block.types'
+import type { TypeTimeBlockFormState } from '@/types/time-block.types'
 
 import { COLORS } from './colors.data'
 import { useCreateTimeBlock } from './useCreateTimeBlock'
 import { useUpdateTimeBlock } from './useUpdateTimeBlock'
 
-export default function TimeBlockingForm() {
+export function TimeBlockingForm() {
 	const { register, control, watch, reset, handleSubmit, getValues } =
 		useFormContext<TypeTimeBlockFormState>()
 
@@ -41,6 +40,7 @@ export default function TimeBlockingForm() {
 			order: 1
 		})
 	}
+
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -51,8 +51,8 @@ export default function TimeBlockingForm() {
 					required: true
 				})}
 				id='name'
-				label='Enter name'
-				placeholder='Enter name'
+				label='Enter name:'
+				placeholder='Enter name:'
 				extra='mb-4'
 			/>
 
@@ -62,8 +62,8 @@ export default function TimeBlockingForm() {
 					valueAsNumber: true
 				})}
 				id='duration'
-				label='Enter duration (min.)'
-				placeholder='Enter duration (min.)'
+				label='Enter duration (min.):'
+				placeholder='Enter duration (min.):'
 				isNumber
 				extra='mb-4'
 			/>

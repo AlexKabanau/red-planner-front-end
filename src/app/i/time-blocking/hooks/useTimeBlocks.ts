@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 
-import { ITimeBlockResponse } from '@/types/time-block.types'
+import type { ITimeBlockResponse } from '@/types/time-block.types'
 
 import { timeBlockService } from '@/services/time-block.service'
 
-export function useTimeBlocks() {
+export const useTimeBlocks = () => {
 	const { data, isLoading } = useQuery({
 		queryKey: ['time-blocks'],
 		queryFn: () => timeBlockService.getTimeBlocks()
