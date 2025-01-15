@@ -1,6 +1,6 @@
 import cn from 'clsx'
 import { GripVertical, Loader, Trash } from 'lucide-react'
-import React, { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 import Checkbox from '@/components/ui/checkbox'
@@ -8,20 +8,20 @@ import { TransparentField } from '@/components/ui/fields/TransparentField'
 import { SingleSelect } from '@/components/ui/task-edit/SingleSelect'
 import { DatePicker } from '@/components/ui/task-edit/date-piacker/DatePicker'
 
-import { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
+import type { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
 
 import { useDeleteTask } from '../hooks/useDeleteTask'
 import { useTaskDebounce } from '../hooks/useTaskDebounce'
 
 import styles from './ListView.module.scss'
 
-type Props = {
+interface IListRow {
 	item: ITaskResponse
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-export function ListRow({ item, setItems }: Props) {
-	const { watch, register, control } = useForm<TypeTaskFormState>({
+export function ListRow({ item, setItems }: IListRow) {
+	const { register, control, watch } = useForm<TypeTaskFormState>({
 		defaultValues: {
 			name: item.name,
 			isCompleted: item.isCompleted,
@@ -80,12 +80,12 @@ export function ListRow({ item, setItems }: Props) {
 					name='priority'
 					render={({ field: { value, onChange } }) => (
 						<SingleSelect
-							data={['hight', 'medium', 'low'].map(item => ({
+							data={['high', 'medium', 'low'].map(item => ({
 								value: item,
 								label: item
 							}))}
-							value={value || ''}
 							onChange={onChange}
+							value={value || ''}
 						/>
 					)}
 				/>

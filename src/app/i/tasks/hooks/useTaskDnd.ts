@@ -35,5 +35,6 @@ export function useTaskDnd() {
 			}
 		})
 	}
+
 	return { onDragEnd }
 }

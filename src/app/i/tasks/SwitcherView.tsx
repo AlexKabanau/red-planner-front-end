@@ -2,16 +2,15 @@
 
 import cn from 'clsx'
 import { Kanban, ListTodo } from 'lucide-react'
-import React from 'react'
 
-import { TypeView } from './TasksView'
+import type { TypeView } from './TasksView'
 
-interface ISwitchView {
+interface ISwitcherView {
 	type: TypeView
 	setType: (value: TypeView) => void
 }
 
-export default function SwitcherView({ setType, type }: ISwitchView) {
+export function SwitcherView({ setType, type }: ISwitcherView) {
 	return (
 		<div className='flex items-center gap-4 mb-5'>
 			<button
@@ -30,7 +29,7 @@ export default function SwitcherView({ setType, type }: ISwitchView) {
 				onClick={() => setType('kanban')}
 			>
 				<Kanban />
-				Kanban
+				Board
 			</button>
 		</div>
 	)

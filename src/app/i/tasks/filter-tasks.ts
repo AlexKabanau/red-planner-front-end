@@ -2,7 +2,7 @@ import dayjs from 'dayjs'
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
 
-import { ITaskResponse } from '@/types/task.types'
+import type { ITaskResponse } from '@/types/task.types'
 
 import { FILTERS } from './columns.data'
 
@@ -40,7 +40,7 @@ export const filterTasks = (
 		case 'on-next-week':
 			return tasks?.filter(
 				item =>
-					dayjs(item.createdAt).isSameOrAfter(FILTERS['on-this-week']) &&
+					dayjs(item.createdAt).isAfter(FILTERS['on-this-week']) &&
 					dayjs(item.createdAt).isSameOrBefore(FILTERS['on-next-week']) &&
 					!item.isCompleted
 			)
@@ -52,6 +52,7 @@ export const filterTasks = (
 						!item.createdAt) &&
 					!item.isCompleted
 			)
+
 		case 'completed':
 			return tasks?.filter(item => item.isCompleted)
 

@@ -1,6 +1,6 @@
 import cn from 'clsx'
 import { GripVertical, Loader, Trash } from 'lucide-react'
-import React, { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
 import Checkbox from '@/components/ui/checkbox'
@@ -8,31 +8,32 @@ import { TransparentField } from '@/components/ui/fields/TransparentField'
 import { SingleSelect } from '@/components/ui/task-edit/SingleSelect'
 import { DatePicker } from '@/components/ui/task-edit/date-piacker/DatePicker'
 
-import { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
+import type { ITaskResponse, TypeTaskFormState } from '@/types/task.types'
 
 import { useDeleteTask } from '../hooks/useDeleteTask'
 import { useTaskDebounce } from '../hooks/useTaskDebounce'
 
 import styles from './KanbanView.module.scss'
 
-type Props = {
+interface IKanbanCard {
 	item: ITaskResponse
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-export function KanbanCard({ item, setItems }: Props) {
-	const { watch, register, control } = useForm<TypeTaskFormState>({
+export function KanbanCard({ item, setItems }: IKanbanCard) {
+	const { register, control, watch } = useForm<TypeTaskFormState>({
 		defaultValues: {
 			name: item.name,
-			priority: item.priority,
 			isCompleted: item.isCompleted,
-			createdAt: item.createdAt
+			createdAt: item.createdAt,
+			priority: item.priority
 		}
 	})
 
 	useTaskDebounce({ watch, itemId: item.id })
 
 	const { deleteTask, isDeletePending } = useDeleteTask()
+
 	return (
 		<div
 			className={cn(

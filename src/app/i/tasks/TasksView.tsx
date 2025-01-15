@@ -1,11 +1,10 @@
 'use client'
 
-import { Loader } from 'lucide-react'
-import React from 'react'
+import Loader from '@/components/ui/Loader'
 
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 
-import SwitcherView from './SwitcherView'
+import { SwitcherView } from './SwitcherView'
 import { KanbanView } from './kanban-view/KanbanView'
 import { ListView } from './list-view/ListView'
 
@@ -22,8 +21,8 @@ export function TasksView() {
 	return (
 		<div>
 			<SwitcherView
-				type={type}
 				setType={setType}
+				type={type}
 			/>
 			{type === 'list' ? <ListView /> : <KanbanView />}
 		</div>

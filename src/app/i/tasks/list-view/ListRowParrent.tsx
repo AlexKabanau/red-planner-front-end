@@ -1,7 +1,7 @@
 import { Draggable, Droppable } from '@hello-pangea/dnd'
-import React, { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
-import { ITaskResponse } from '@/types/task.types'
+import type { ITaskResponse } from '@/types/task.types'
 
 import { FILTERS } from '../columns.data'
 import { filterTasks } from '../filter-tasks'
@@ -10,19 +10,19 @@ import { ListAddRowInput } from './ListAddRowInput'
 import { ListRow } from './ListRow'
 import styles from './ListView.module.scss'
 
-interface IListRowParrent {
+interface IListRowParent {
 	value: string
 	label: string
 	items: ITaskResponse[] | undefined
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-export function ListRowParrent({
+export function ListRowParent({
+	value,
 	items,
 	label,
-	value,
 	setItems
-}: IListRowParrent) {
+}: IListRowParent) {
 	return (
 		<Droppable droppableId={value}>
 			{provided => (
@@ -37,7 +37,7 @@ export function ListRowParrent({
 					{filterTasks(items, value)?.map((item, index) => (
 						<Draggable
 							key={item.id}
-							draggableId={item.id.toString()}
+							draggableId={item.id}
 							index={index}
 						>
 							{provided => (
@@ -47,9 +47,9 @@ export function ListRowParrent({
 									{...provided.dragHandleProps}
 								>
 									<ListRow
+										key={item.id}
 										item={item}
 										setItems={setItems}
-										key={item.id}
 									/>
 								</div>
 							)}

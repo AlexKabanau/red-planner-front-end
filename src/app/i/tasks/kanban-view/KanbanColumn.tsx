@@ -1,7 +1,7 @@
 import { Draggable, Droppable } from '@hello-pangea/dnd'
-import React, { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
-import { ITaskResponse } from '@/types/task.types'
+import type { ITaskResponse } from '@/types/task.types'
 
 import { FILTERS } from '../columns.data'
 import { filterTasks } from '../filter-tasks'
@@ -17,7 +17,7 @@ interface IKanbanColumn {
 	setItems: Dispatch<SetStateAction<ITaskResponse[] | undefined>>
 }
 
-export function KanbanColumn({ items, label, value, setItems }: IKanbanColumn) {
+export function KanbanColumn({ value, items, label, setItems }: IKanbanColumn) {
 	return (
 		<Droppable droppableId={value}>
 			{provided => (
@@ -31,7 +31,7 @@ export function KanbanColumn({ items, label, value, setItems }: IKanbanColumn) {
 						{filterTasks(items, value)?.map((item, index) => (
 							<Draggable
 								key={item.id}
-								draggableId={item.id.toString()}
+								draggableId={item.id}
 								index={index}
 							>
 								{provided => (
@@ -41,9 +41,9 @@ export function KanbanColumn({ items, label, value, setItems }: IKanbanColumn) {
 										{...provided.dragHandleProps}
 									>
 										<KanbanCard
+											key={item.id}
 											item={item}
 											setItems={setItems}
-											key={item.id}
 										/>
 									</div>
 								)}

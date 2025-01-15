@@ -1,6 +1,6 @@
 import { type Dispatch, type SetStateAction } from 'react'
 
-import { ITaskResponse } from '@/types/task.types'
+import type { ITaskResponse } from '@/types/task.types'
 
 interface IKanbanAddCardInput {
 	filterDate?: string

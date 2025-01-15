@@ -6,7 +6,7 @@ import { COLUMNS } from '../columns.data'
 import { useTaskDnd } from '../hooks/useTaskDnd'
 import { useTasks } from '../hooks/useTasks'
 
-import { ListRowParrent } from './ListRowParrent'
+import { ListRowParent } from './ListRowParrent'
 import styles from './ListView.module.scss'
 
 export function ListView() {
@@ -25,7 +25,7 @@ export function ListView() {
 
 				<div className={styles.parentsWrapper}>
 					{COLUMNS.map(column => (
-						<ListRowParrent
+						<ListRowParent
 							items={items}
 							label={column.label}
 							value={column.value}
