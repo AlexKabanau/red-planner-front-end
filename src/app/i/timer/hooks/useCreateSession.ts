@@ -14,5 +14,6 @@ export function useCreateSession() {
 			})
 		}
 	})
+
 	return { mutate, isPending }
 }

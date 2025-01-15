@@ -15,5 +15,6 @@ export function useDeleteSession(onDeleteSuccess: () => void) {
 			onDeleteSuccess()
 		}
 	})
+
 	return { deleteSession, isDeletePending }
 }

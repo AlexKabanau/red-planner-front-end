@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 
-import { ITimerState } from '../timer.types'
+import type { ITimerState } from '../timer.types'
 
 import { useLoadSettings } from './useLoadSettings'
 import { pomodoroService } from '@/services/pomodoro.service'
@@ -13,7 +13,7 @@ export function useTodaySession({
 	const { workInterval } = useLoadSettings()
 
 	const {
-		data: sessiosResponse,
+		data: sessionsResponse,
 		isLoading,
 		refetch,
 		isSuccess
@@ -22,7 +22,7 @@ export function useTodaySession({
 		queryFn: () => pomodoroService.getTodaySession()
 	})
 
-	const rounds = sessiosResponse?.data.rounds
+	const rounds = sessionsResponse?.data.rounds
 
 	useEffect(() => {
 		if (isSuccess && rounds) {
@@ -35,5 +35,5 @@ export function useTodaySession({
 		}
 	}, [isSuccess, rounds])
 
-	return { sessiosResponse, isLoading, workInterval }
+	return { sessionsResponse, isLoading, workInterval }
 }

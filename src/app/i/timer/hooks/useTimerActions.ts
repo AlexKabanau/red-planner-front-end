@@ -1,6 +1,6 @@
-import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
+import type { IPomodoroRoundResponse } from '@/types/pomodoro.types'
 
-import { ITimerState } from '../timer.types'
+import type { ITimerState } from '../timer.types'
 
 import { useLoadSettings } from './useLoadSettings'
 import { useUpdateRound } from './useUpdateRound'
@@ -8,12 +8,13 @@ import { useUpdateRound } from './useUpdateRound'
 type TypeUseTimerActions = ITimerState & {
 	rounds: IPomodoroRoundResponse[] | undefined
 }
+
 export function useTimerActions({
 	activeRound,
-	secondsLeft,
-	setActiveRound,
 	setIsRunning,
-	rounds
+	secondsLeft,
+	rounds,
+	setActiveRound
 }: TypeUseTimerActions) {
 	const { workInterval } = useLoadSettings()
 	const { isUpdateRoundPending, updateRound } = useUpdateRound()
@@ -30,6 +31,7 @@ export function useTimerActions({
 			}
 		})
 	}
+
 	const playHandler = () => {
 		setIsRunning(true)
 	}
@@ -45,9 +47,10 @@ export function useTimerActions({
 			}
 		})
 	}
-	const prevRoundHandler = () => {
-		const lastCompletedRound = rounds?.findLast(round => round.isCompleted)
 
+	const prevRoundHandler = () => {
+		// ES2023
+		const lastCompletedRound = rounds?.findLast(round => round.isCompleted)
 		if (!lastCompletedRound?.id) return
 
 		updateRound({
@@ -57,6 +60,7 @@ export function useTimerActions({
 				totalSeconds: 0
 			}
 		})
+
 		setActiveRound(lastCompletedRound)
 	}
 

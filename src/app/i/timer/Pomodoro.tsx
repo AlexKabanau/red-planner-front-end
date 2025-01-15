@@ -1,7 +1,6 @@
 'use client'
 
 import { Loader, Pause, Play, RefreshCcw } from 'lucide-react'
-import React from 'react'
 
 import { Button } from '@/components/ui/buttons/Button'
 
@@ -11,17 +10,17 @@ import { useDeleteSession } from './hooks/useDeleteSession'
 import { useTimer } from './hooks/useTimer'
 import { useTimerActions } from './hooks/useTimerActions'
 import { useTodaySession } from './hooks/useTodaySession'
-import PomodoroRounds from './rounds/PomodoroRounds'
+import { PomodoroRounds } from './rounds/PomodoroRounds'
 
-export default function Pomodoro() {
+export function Pomodoro() {
 	const timerState = useTimer()
-	const { isLoading, sessiosResponse, workInterval } =
+	const { isLoading, sessionsResponse, workInterval } =
 		useTodaySession(timerState)
 
-	const rounds = sessiosResponse?.data.rounds
+	const rounds = sessionsResponse?.data.rounds
 	const actions = useTimerActions({ ...timerState, rounds })
 
-	const { mutate, isPending } = useCreateSession()
+	const { isPending, mutate } = useCreateSession()
 	const { deleteSession, isDeletePending } = useDeleteSession(() =>
 		timerState.setSecondsLeft(workInterval * 60)
 	)
@@ -35,7 +34,7 @@ export default function Pomodoro() {
 			)}
 			{isLoading ? (
 				<Loader />
-			) : sessiosResponse?.data ? (
+			) : sessionsResponse?.data ? (
 				<>
 					<PomodoroRounds
 						rounds={rounds}
@@ -55,7 +54,7 @@ export default function Pomodoro() {
 					<button
 						onClick={() => {
 							timerState.setIsRunning(false)
-							deleteSession(sessiosResponse.data.id)
+							deleteSession(sessionsResponse.data.id)
 						}}
 						className='absolute top-0 right-0 opacity-40 hover:opacity-90 transition-opacity'
 						disabled={isDeletePending}

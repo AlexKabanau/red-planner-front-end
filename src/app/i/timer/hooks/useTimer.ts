@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
+import type { IPomodoroRoundResponse } from '@/types/pomodoro.types'
 
-import { ITimerState } from '../timer.types'
+import type { ITimerState } from '../timer.types'
 
 import { useLoadSettings } from './useLoadSettings'
 
@@ -32,8 +32,10 @@ export function useTimer(): ITimerState {
 	}, [isRunning, secondsLeft, workInterval, activeRound])
 
 	useEffect(() => {
+		// Ранний выход, если время не истекло
 		if (secondsLeft > 0) return
 
+		// Переключение режима и установка нового времени одной операцией
 		setIsBreakTime(!isBreakTime)
 		setSecondsLeft((isBreakTime ? workInterval : breakInterval) * 60)
 	}, [secondsLeft, isBreakTime, workInterval, breakInterval])

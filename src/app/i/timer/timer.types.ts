@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 
-import { IPomodoroRoundResponse } from '@/types/pomodoro.types'
+import type { IPomodoroRoundResponse } from '@/types/pomodoro.types'
 
 export interface ITimerState {
 	isRunning: boolean

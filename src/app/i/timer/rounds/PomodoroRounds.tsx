@@ -12,11 +12,11 @@ interface IPomodoroRounds {
 	activeRound: IPomodoroRoundResponse | undefined
 }
 
-export default function PomodoroRounds({
-	activeRound,
+export function PomodoroRounds({
+	rounds,
 	nextRoundHandler,
 	prevRoundHandler,
-	rounds
+	activeRound
 }: IPomodoroRounds) {
 	const isCanPrevRound = rounds
 		? rounds.some(round => round.isCompleted)

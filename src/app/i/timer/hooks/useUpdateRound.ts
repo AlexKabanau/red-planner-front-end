@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { TypePomodoroRoundState } from './../../../../types/pomodoro.types'
+import { TypePomodoroRoundState } from '@/types/pomodoro.types'
+
 import { pomodoroService } from '@/services/pomodoro.service'
 
 export function useUpdateRound() {
