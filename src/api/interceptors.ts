@@ -9,7 +9,8 @@ import {
 import { authService } from '@/services/auth.service'
 
 const optins: CreateAxiosDefaults = {
-	baseURL: 'http://localhost:4200/api',
+	baseURL:
+		'https://https://red-planner-back-end-production.up.railway.app//api',
 	headers: {
 		'Content-Type': 'application/json'
 	},

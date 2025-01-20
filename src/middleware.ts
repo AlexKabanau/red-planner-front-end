@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 	const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
 
 	const isAuthPage = url.includes('/auth')
-
+	debugger
 	if (isAuthPage && refreshToken) {
 		return NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, url))
 	}
