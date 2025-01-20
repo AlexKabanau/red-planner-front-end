@@ -48,7 +48,10 @@ export function PomodoroRounds({
 			<button
 				className={styles.button}
 				disabled={!isCanNextRound}
-				onClick={() => (isCanNextRound ? nextRoundHandler() : false)}
+				onClick={() => {
+					console.log('nextRoundHandler')
+					return isCanNextRound ? nextRoundHandler() : false
+				}}
 			>
 				<ChevronRight size={23} />
 			</button>

@@ -30,8 +30,13 @@ export function Auth() {
 		mutationFn: (data: IAuthForm) =>
 			authService.main(isLoginForm ? 'login' : 'register', data),
 		onSuccess() {
+			alert('Successfully login!')
 			toast.success('Successfully login!')
+			debugger
 			reset()
+			console.log('reset')
+			console.log(DASHBOARD_PAGES.HOME)
+
 			push(DASHBOARD_PAGES.HOME)
 		}
 	})
