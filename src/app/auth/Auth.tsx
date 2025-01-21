@@ -33,11 +33,17 @@ export function Auth() {
 			console.log('Successfully login!')
 			toast.success('Successfully login!')
 			reset()
+			console.log('Redirecting to:', DASHBOARD_PAGES.HOME)
 			push(DASHBOARD_PAGES.HOME)
+		},
+		onError(error) {
+			console.error('Login failed:', error)
+			toast.error('Login failed. Please try again.')
 		}
 	})
 
 	const onSubmit: SubmitHandler<IAuthForm> = data => {
+		console.log('Submitting form:', data)
 		mutate(data)
 	}
 
