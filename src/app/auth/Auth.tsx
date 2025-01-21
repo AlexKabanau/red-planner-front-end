@@ -1,8 +1,8 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/router'
-// import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -35,17 +35,11 @@ export function Auth() {
 			toast.success('Successfully login!')
 			reset()
 			console.log('Redirecting to /i...')
-			push(DASHBOARD_PAGES.HOME)
-				.then(() => {
-					console.log('Redirect successful!')
-				})
-				.catch(error => {
-					console.error('Redirect error:', error)
-				})
+			push(DASHBOARD_PAGES.HOME) // Переход на /i
 		},
-		onError(error) {
-			console.error('Login failed:', error)
-			toast.error('Login failed. Please try again.')
+		onError: error => {
+			console.error('Mutation error:', error)
+			toast.error('Login failed!')
 		}
 	})
 
