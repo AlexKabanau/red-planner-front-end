@@ -7,10 +7,11 @@ export const getAccessToken = () => {
 
 export const saveTokenStorage = (accessToken: string) => {
 	Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-		domain: 'red-planner-back-end-production.up.railway.app',
+		domain: 'red-planner-back-end.railway.internal',
 		sameSite: 'none',
 		expires: 1
 	})
+	console.log(accessToken)
 }
 
 export const removeFromStorage = () => {
