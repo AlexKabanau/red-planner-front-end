@@ -1,7 +1,8 @@
 'use client'
 
 import { useMutation } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
+// import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { toast } from 'sonner'
@@ -29,12 +30,18 @@ export function Auth() {
 		mutationKey: ['auth'],
 		mutationFn: (data: IAuthForm) =>
 			authService.main(isLoginForm ? 'login' : 'register', data),
-		onSuccess() {
+		onSuccess: () => {
 			console.log('Successfully login!')
 			toast.success('Successfully login!')
 			reset()
-			console.log('Redirecting to:', DASHBOARD_PAGES.HOME)
+			console.log('Redirecting to /i...')
 			push(DASHBOARD_PAGES.HOME)
+				.then(() => {
+					console.log('Redirect successful!')
+				})
+				.catch(error => {
+					console.error('Redirect error:', error)
+				})
 		},
 		onError(error) {
 			console.error('Login failed:', error)
