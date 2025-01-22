@@ -4,11 +4,10 @@ import { DASHBOARD_PAGES } from './config/pages-url.config'
 import { EnumTokens } from './services/auth-tokent.service'
 
 export async function middleware(request: NextRequest) {
-	console.log('Middleware is executing', {
-		cookies: request.cookies.getAll(),
-		url: request.url
-	})
-	return NextResponse.next() // Временный пропуск обработки
+	const refreshToken = request.cookies.get('refreshToken')?.value || 'undefined'
+	console.log('Middleware executed:', { url: request.url, refreshToken })
+
+	return NextResponse.next()
 
 	// const { url, cookies } = request
 
