@@ -1,4 +1,4 @@
-import { IBase } from './root.type'
+import type { IBase } from './root.type'
 
 export interface IPomodoroRoundResponse extends IBase {
 	isCompleted?: boolean

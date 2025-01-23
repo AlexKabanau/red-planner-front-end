@@ -1,10 +1,10 @@
-import { axiosWithAuth } from '@/api/interceptors'
-
 import {
 	IPomodoroSessionResponse,
 	TypePomodoroRoundState,
 	TypePomodoroSessionState
-} from '../types/pomodoro.types'
+} from '@/types/pomodoro.types'
+
+import { axiosWithAuth } from '@/api/interceptors'
 
 class PomodoroService {
 	private BASE_URL = '/user/timer'
@@ -13,7 +13,6 @@ class PomodoroService {
 		const response = await axiosWithAuth.get<IPomodoroSessionResponse>(
 			`${this.BASE_URL}/today`
 		)
-
 		return response
 	}
 
@@ -26,7 +25,6 @@ class PomodoroService {
 
 	async updateSession(id: string, data: TypePomodoroSessionState) {
 		const response = await axiosWithAuth.put(`${this.BASE_URL}/${id}`, data)
-
 		return response
 	}
 
@@ -34,12 +32,14 @@ class PomodoroService {
 		const response = await axiosWithAuth.delete(`${this.BASE_URL}/${id}`)
 		return response
 	}
+
 	async updateRound(id: string, data: TypePomodoroRoundState) {
 		const response = await axiosWithAuth.put(
-			`${this.BASE_URL}/rounds/${id}`,
+			`${this.BASE_URL}/round/${id}`,
 			data
 		)
 		return response
 	}
 }
+
 export const pomodoroService = new PomodoroService()
