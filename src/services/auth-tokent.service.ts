@@ -12,7 +12,7 @@ export const saveTokenStorage = (accessToken: string) => {
 		secure: true,
 		expires: 1
 	})
-	console.log(accessToken)
+	// console.log(accessToken)
 }
 
 export const removeFromStorage = () => {

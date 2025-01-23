@@ -31,20 +31,20 @@ export function Auth() {
 		mutationFn: (data: IAuthForm) =>
 			authService.main(isLoginForm ? 'login' : 'register', data),
 		onSuccess: () => {
-			console.log('Successfully login!')
+			// console.log('Successfully login!')
 			toast.success('Successfully login!')
 			reset()
-			console.log('Redirecting to /i...')
+			// console.log('Redirecting to /i...')
 			push(DASHBOARD_PAGES.HOME) // Переход на /i
 		},
 		onError: error => {
-			console.error('Mutation error:', error)
+			// console.error('Mutation error:', error)
 			toast.error('Login failed!')
 		}
 	})
 
 	const onSubmit: SubmitHandler<IAuthForm> = data => {
-		console.log('Submitting form:', data)
+		// console.log('Submitting form:', data)
 		mutate(data)
 	}
 
